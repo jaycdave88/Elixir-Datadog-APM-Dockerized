@@ -43,7 +43,7 @@ defmodule SpandexDatadog.ApiServer do
                        api_adapter: :atom
                      ],
                      defaults: [
-                       host: "localhost",
+                       host: "ddagent",
                        port: 8126,
                        verbose?: false,
                        batch_size: 10,

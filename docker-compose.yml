@@ -1,0 +1,22 @@
+version: '2'
+services:
+  test:
+    build: .
+    command: mix phoenix.server
+    environment:
+      - DD_AGENT_HOST=ddagent
+      - DD_TRACE_AGENT_PORT=8126
+    ports:
+      - "4000:4000"
+    depends_on:
+      - ddagent
+
+  ddagent:
+    container_name: ddagent
+    image: datadog/agent:latest
+    environment:
+      - DD_APM_ENABLED=true
+      - DD_APM_NON_LOCAL_TRAFFIC=true
+      - DD_API_KEY=[API_Key]
+    ports:
+      - "8126:8126/tcp"
