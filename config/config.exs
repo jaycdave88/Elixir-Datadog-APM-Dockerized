@@ -45,6 +45,20 @@ config :ueberauth, Ueberauth,
     twitter: { Ueberauth.Strategy.Twitter, []}
   ]
 
+config :spandex_phoenix, tracer: PhoenixBackend.Tracer,
+  service: :my_app,
+  adapter: SpandexDatadog.Adapter,
+  type: :web
+
+config :utils, Datadog.Tracer,
+  adapter: SpandexDatadog.Adapter,
+  service: :api,
+  type: :web
+
+config :spandex, :decorators, tracer: Datadog.Tracer
+
+config :spandex_phoenix, tracer: Datadog.Tracer
+
 config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
   client_id: System.get_env("FACEBOOK_APP_ID"),
   client_secret: System.get_env("FACEBOOK_APP_SECRET"),
