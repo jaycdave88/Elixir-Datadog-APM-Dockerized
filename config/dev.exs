@@ -39,5 +39,6 @@ config :ueberauth_example, UeberauthExample.Repo,
   username: "postgres",
   password: "postgres",
   database: "ueberauth_example_dev",
-  hostname: "localhost",
+  hostname: "db",
+  port: 5432,
   pool_size: 10

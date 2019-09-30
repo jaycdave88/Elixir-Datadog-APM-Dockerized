@@ -1,16 +1,16 @@
-version: '2'
+version: '3'
 services:
-  test:
+  app:
     build: .
-    command: mix phoenix.server
     environment:
-      - DD_AGENT_HOST=ddagent
       - DD_TRACE_AGENT_PORT=8126
       - DD_TRACE_AGENT_HOSTNAME=ddagent
     ports:
       - "4000:4000"
     depends_on:
       - ddagent
+      - db
+    command: /app/run.sh 
 
   ddagent:
     container_name: ddagent
@@ -19,6 +19,14 @@ services:
       - DD_APM_ENABLED=true
       - DD_APM_NON_LOCAL_TRAFFIC=true
       - DD_BIND_HOST=0.0.0.0
-      - DD_API_KEY=[API_KEY]
+    env_file:
+      - datadog.env
     ports:
       - "8126:8126/tcp"
+
+  db:
+    image: onjin/alpine-postgres:9.5
+    container_name: "db"
+    ports:
+      - "5432:5432"
+
