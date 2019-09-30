@@ -2,6 +2,7 @@ defmodule UeberauthExampleWeb.Endpoint do
   @moduledoc false
 
   use Phoenix.Endpoint, otp_app: :ueberauth_example
+  use SpandexPhoenix
 
   socket "/socket", UeberauthExampleWeb.UserSocket
 

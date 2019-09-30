@@ -41,7 +41,11 @@ defmodule UeberauthExample.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.2"},
+    [
+     {:spandex_ecto, "~> 0.2"},
+     {:spandex_phoenix, "~> 0.1"},
+     {:spandex_datadog, "~> 0.4.0"},
+     {:phoenix, "~> 1.3.2"},
      {:phoenix_ecto, "~> 3.2"},
      {:postgrex, "~> 0.13"},
      {:phoenix_html, "~> 2.10.3"},
